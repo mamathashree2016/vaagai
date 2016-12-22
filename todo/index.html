@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+	<title>AngularJS</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <!-- Angular Material Dependencies -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+ <!--  // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script> -->
+	
+<!--   // <script src="http://code.jquery.com/jquery.js"></script> -->
+ 
+    
+</head>
+<body>
+<div ng-app="todomvc">
+<div class="row" ng-controller="customersCtrl">
+
+	<div class="col-md-2"></div>
+
+	 <div class="col-md-8">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<section class="tabbable" ng-init="tab = 1">
+					<ul class="nav nav-tabs" role="tablist">
+						<li><a href ng-click="tab = 1" data-toggle="tab">Home</a></li>
+						<li><a href ng-click="tab = 2" data-toggle="tab">Flights</a></li>
+						<li><a href ng-click="tab = 3" data-toggle="tab">Hotels</a></li>
+						<li><a href ng-click="tab = 5" data-toggle="tab">Flight & Hotel packages</a></li>
+						<li><a href ng-click="tab = 6" data-toggle="tab">Holidays</a></li>
+						<li><a href ng-click="tab = 7" data-toggle="tab">Bus</a></li>
+						<li><a href ng-click="tab = 8" data-toggle="tab">Car</a></li>
+						<li><select ng-model="dropdown" class="form-control" ng-options="item in phones">					
+							<option value="">Select Roles</option>
+								</select>
+            			</li>
+					</ul>	
+				</section>			
+			</li>
+		</ul>
+
+		<ul class="list-group">
+			<li class="list-group-item">
+        <div class="container">  
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+              </div>      
+            </div>
+          </form>
+ 
+ <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <td>
+          Sushi Roll 
+        </td>
+        <td>
+          Fish Type 
+        </td>
+        <td>
+          Taste Level
+        </td>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr data-ng-repeat="roll in phones">
+        <td>{{ roll.type }}</td>
+        <td>{{ roll.numbers }}</td>
+      </tr>
+    </tbody>
+    
+  </table> 
+
+</div>
+        </div>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="col-md-2"></div>
+
+ </div>
+</div>
+		<script src="node_modules/todomvc-common/base.js"></script>
+		<script src="node_modules/angular/angular.js"></script>
+		<script src="node_modules/angular-route/angular-route.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controllers/todoCtrl.js"></script>
+		<script src="js/services/todoStorage.js"></script>
+		<script src="js/directives/todoFocus.js"></script>
+		<script src="js/directives/todoEscape.js"></script>
+<script>
+var app = angular.module('todomvc', []);
+app.controller('customersCtrl', function($scope, $http) {
+
+
+var mainInfo = null;
+$http.get('note.json').success(function(data) {
+    mainInfo = data;
+    	console.log(mainInfo);
+});
+    
+
+  $http.get("note.json").then(function (response) {
+  	console.log(response);
+     // $scope.myData = response.data.records;
+  });
+});
+</script>
+</body>
+
+</html>
+
+<!-- <!doctype html>
+<html lang="en" data-framework="angularjs">
+	<head>
+		<meta charset="utf-8">
+
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+		<style>[ng-cloak] { display: none; }</style>
+	</head>
+	<body ng-app="todomvc">
+		<ng-view />
+
+		<script type="text/ng-template" id="todomvc-index.html">
+			<section id="todoapp">
+				<header id="header">
+				
+					<form id="todo-form" ng-submit="addTodo()">
+						<input id="new-todo" placeholder="Enter Todo List" ng-model="newTodo" ng-disabled="saving" autofocus>
+					</form>
+				</header>
+				<section id="main" ng-show="todos.length" ng-cloak>
+					<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+					<label for="toggle-all">Mark all as complete</label>
+					<ul id="todo-list">
+						<li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+							<div class="view">
+								<input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+								<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+								<button class="destroy" ng-click="removeTodo(todo)"></button>
+							</div>
+							<form ng-submit="saveEdits(todo, 'submit')">
+								<input class="edit" ng-trim="false" ng-model="todo.title" todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')" todo-focus="todo == editedTodo">
+							</form>
+						</li>
+					</ul>
+				</section>
+				<footer id="footer" ng-show="todos.length" ng-cloak>
+					<span id="todo-count"><strong>{{remainingCount}}</strong>
+						<ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+					</span>
+					<ul id="filters">
+						<li>
+							<a ng-class="{selected: status == ''} " href="#/">All</a>
+						</li>
+						<li>
+							<a ng-class="{selected: status == 'active'}" href="#/active">Active</a>
+						</li>
+						<li>
+							<a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a>
+						</li>
+					</ul>
+					<button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed</button>
+				</footer>
+			</section>
+
+		</script>
+		<script src="node_modules/todomvc-common/base.js"></script>
+		<script src="node_modules/angular/angular.js"></script>
+		<script src="node_modules/angular-route/angular-route.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controllers/todoCtrl.js"></script>
+		<script src="js/services/todoStorage.js"></script>
+		<script src="js/directives/todoFocus.js"></script>
+		<script src="js/directives/todoEscape.js"></script>
+	</body>
+</html>
+ -->

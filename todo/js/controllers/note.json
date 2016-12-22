@@ -1,0 +1,27 @@
+{
+   "name":"homer",
+   "Note":
+  {
+   "N_000":"Password should contain alphanumeric with atleast one UPPERCASE,one lowercase and special character(ex:Trinetra@1)",
+   "N_001":"Enter minimum 3 alphanumeric characters.",
+   "N_002":"Enter valid email ID for user authentication.",
+   "N_003":"Administrator will have full access where as user will be having limited access.",
+   "N_004":"Client admin has limited access, belongs to the organisation",
+   "N_005":"Minimum 3 alphanumeric characters allowed for client name.",
+   "N_006":"Enter your valid contact number.",
+   "N_007":"Enter valid email ID for client authentication.",
+   "N_008":"Enter meaningful folder name for creating folder in client documents.",
+   "N_009":"Chose the subscription end date.",
+   "N_010":"Enter meaningful text to be remind.",
+   "N_011":"Chose the start date for the timeline.",
+   "N_012":"Please select how often you want be remind.",
+   "N_013":"There is no end date for never.",
+   "N_014":"Chose the end date for the timeline.",
+   "N_015":"Enter the timeline text / details here",
+   "N_016":"User will be mapped to the default organization listed.",
+   "N_017":"Choose space for the client",
+   "N_018":"Chose the subscription start date.",
+   "N_019":"Enter meaningful group name for creating group.",
+   "N_020":"Enter description for the group."
+   }
+}
